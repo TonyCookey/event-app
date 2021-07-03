@@ -1,0 +1,16 @@
+@layout('layout')
+@set('title', 'Dashboard')
+
+@section('body')
+  <div class="col-lg-9">
+    <div class="text-center">
+      <img class="img-fluid  mb-5" src="assets/svg/illustrations/graphs.svg" alt="Image Description" style="max-width: 30rem;">
+
+      @if(auth.isLoggedIn)
+        <h1>Hello, {{ auth.user.first_name }}  {{ auth.user.last_name }}</h1>  
+        <p>You currently do not have any upcoming events.</p>
+        <a class="btn btn-primary" href="/create-event">Create your first event </a>
+      @endif
+    </div>
+  </div>
+@end

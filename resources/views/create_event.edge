@@ -1,0 +1,98 @@
+@layout('layout')
+@set('title', 'Create Event')
+
+@section('body')
+  <div class="col-lg-7">
+    <h1 class="mb-5">Create Event</h1>    
+      <form>
+        <div class="form-group">
+          <label class="input-label" for="event_name">Event Name <span class="required">*</span></label>
+          <input type="text" id="event_name" class="form-control" placeholder="Bisola's Party" name="event_name" required>
+        </div> 
+
+        <div class="form-group">
+          <label class="input-label" for="event_description">Event Description  <span class="required">*</span></label>
+          <textarea id="event_description" name="event_description" class="form-control" placeholder="Event Description" rows="4" required></textarea>
+        </div>        
+      
+        <div class="form-group">
+          <label class="input-label" for="event_category">Event Category <span class="required">*</span></label>
+          <select id="event_category" class="form-control" name="event_category" required>
+            <option selected disabled>Choose a category</option>
+            <option>Arts & Culture</option>
+            <option>Business</option>
+            <option>Education</option>
+            <option>Fashion</option>
+            <option>Media</option>
+            <option>Religion</option>
+            <option>Technology</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-6">
+              <label class="input-label" for="event_start_date">Event Start Date  <span class="required">*</span></label>
+              <input type="text" class="js-flatpickr form-control flatpickr-custom" placeholder="Select date" required name="event_start_date"
+                data-hs-flatpickr-options='{
+                  "dateFormat": "d/m/Y"
+                }'> 
+            </div>
+            <div class="col-md-6">
+              <label class="input-label" for="event_end_date">Event End Date  <span class="required">*</span></label>
+              <input type="text" class="js-flatpickr form-control flatpickr-custom" required placeholder="Select date" name="event_end_date"
+                data-hs-flatpickr-options='{
+                  "dateFormat": "d/m/Y"
+                }'> 
+            </div>
+          </div>
+        </div>  
+
+        <div class="form-group">
+          <label class="input-label" for="event_end_date">Event Payment Status <span class="required">*</span></label>
+          <div class="form-row">
+            <div class="col-sm mb-2 mb-sm-0">
+              <!-- Custom Radio -->
+              <div class="form-control">
+                <div class="custom-control custom-radio custom-radio-reverse">
+                  <input type="radio" class="custom-control-input" name="projectViewNewProjectTypeRadio" id="projectViewNewProjectTypeRadio1">
+                  <label class="custom-control-label media align-items-center" for="projectViewNewProjectTypeRadio1">
+                    <i class="tio-agenda-view-outlined text-muted mr-2"></i>
+                    <span class="media-body">
+                      Free
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <!-- End Custom Radio -->
+            </div>
+          
+            <div class="col-sm mb-2 mb-sm-0">
+              <!-- Custom Radio -->
+              <div class="form-control">
+                <div class="custom-control custom-radio custom-radio-reverse">
+                  <input type="radio" class="custom-control-input" name="projectViewNewProjectTypeRadio" id="projectViewNewProjectTypeRadio2" checked>
+                  <label class="custom-control-label media align-items-center" for="projectViewNewProjectTypeRadio2">
+                    <i class="tio-dollar text-muted mr-2"></i>
+                    <span class="media-body">
+                      Paid
+                    </span>
+                  </label>
+                </div>
+              </div>
+              <!-- End Custom Radio -->
+            </div>
+          
+            
+          </div>
+          <!-- End Row -->
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-lg btn-block btn-primary mb-2">Create Event</button>
+        </div>
+      
+       
+      </form>      
+  </div>
+@end
