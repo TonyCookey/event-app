@@ -24,8 +24,6 @@ export default class EventsController {
       })
       const payload = await request.validate({ schema: eventSchema })
 
-
-
       await user.related("events").create({
         event_name: payload.event_name,
         event_description: payload.event_description,
@@ -36,7 +34,7 @@ export default class EventsController {
         is_event_free: payload.is_event_free
       });
 
-      console.log("Request =>", request.all(), "Payload=>", payload);   
+      // console.log("Request =>", request.all(), "Payload=>", payload);   
   }
 
   public async events({auth, view}: HttpContextContract) {

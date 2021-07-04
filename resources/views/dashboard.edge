@@ -2,15 +2,100 @@
 @set('title', 'Dashboard')
 
 @section('body')
-  <div class="col-lg-9">
-    <div class="text-center">
-      <img class="img-fluid  mb-5" src="assets/svg/illustrations/graphs.svg" alt="Image Description" style="max-width: 30rem;">
+@if(event_length == 0)
+  <div class="row justify-content-lg-center pt-lg-5 pt-xl-5">
+    <div class="col-lg-9">
+      <div class="text-center">
+        <img class="img-fluid  mb-5" src="assets/svg/illustrations/graphs.svg" alt="Image Description" style="max-width: 30rem;">
 
-      @if(auth.isLoggedIn)
-        <h1>Hello, {{ auth.user.first_name }}  {{ auth.user.last_name }}</h1>  
-        <p>You currently do not have any upcoming events.</p>
-        <a class="btn btn-primary" href="/create-event">Create your first event </a>
-      @endif
+        @if(auth.isLoggedIn)
+          <h1>Hello, {{ auth.user.first_name }}  {{ auth.user.last_name }}</h1>  
+          <p>You currently do not have any upcoming events.</p>
+          <a class="btn btn-primary" href="/create-event">Create your first event </a>
+        @endif
+      </div>
     </div>
   </div>
+@else
+  <div class="page-header">
+    <div class="row align-items-center">
+      <div class="col-sm mb-2 mb-sm-0">
+        <h1 class="page-header-title">Dashboard</h1>
+      </div>
+
+      <div class="col-sm-auto">
+        <a class="btn btn-primary" href="/create-event">
+          <i class="tio-apps mr-1"></i> Create Event
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-lg-center pt-lg-5 pt-xl-5">
+    <div class="col-sm-4 col-lg-3 mb-3 mb-lg-5">
+      <!-- Card -->
+      <a class="card card-hover-shadow h-100" href="#">
+        <div class="card-body text-center">
+          <h6 class="card-subtitle"><span class="legend-indicator bg-primary"></span>My Events</h6>
+
+          <div class="row align-items-center gx-2 mb-1">
+            <div class="col-12">
+              <span class="card-title display-3">{{event_length}}</span>
+            </div>         
+          </div>        
+        </div>
+      </a>
+    </div> 
+    
+    <div class="col-sm-4 col-lg-3 mb-3 mb-lg-5">
+      <!-- Card -->
+      <a class="card card-hover-shadow h-100" href="#">
+        <div class="card-body text-center">
+          <h6 class="card-subtitle"><span class="legend-indicator bg-success"></span>Active Events</h6>
+
+          <div class="row align-items-center gx-2 mb-1">
+            <div class="col-12">
+              <span class="card-title display-3">{{active_events_length}}</span>
+            </div>         
+          </div>        
+        </div>
+      </a>
+    </div> 
+
+    <div class="col-sm-4 col-lg-3 mb-3 mb-lg-5">
+      <!-- Card -->
+      <a class="card card-hover-shadow h-100" href="#">
+        <div class="card-body text-center">
+          <h6 class="card-subtitle"><span class="legend-indicator bg-warning"></span>Upcoming Events</h6>
+
+          <div class="row align-items-center gx-2 mb-1">
+            <div class="col-12">
+              <span class="card-title display-3">{{upcoming_events_length}}</span>
+            </div>         
+          </div>        
+        </div>
+      </a>
+    </div>
+    <div class="col-sm-4 col-lg-3 mb-3 mb-lg-5">
+      <!-- Card -->
+      <a class="card card-hover-shadow h-100" href="#">
+        <div class="card-body text-center">
+          <h6 class="card-subtitle"><span class="legend-indicator bg-warning"></span>Past Events</h6>
+
+          <div class="row align-items-center gx-2 mb-1">
+            <div class="col-12">
+              <span class="card-title display-3">{{past_events_length}}</span>
+            </div>         
+          </div>        
+        </div>
+      </a>
+    </div>
+    
+  </div> 
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+      
+  </div>
+  
+@endif
+ 
 @end

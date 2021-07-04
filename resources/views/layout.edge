@@ -56,6 +56,9 @@
     background-color: #d84514;
     border-color: #d84514;
     }
+    .card[href]:hover .card-header-title, .card[href]:hover .card-title {
+    color: #d84514;
+}
   </style>
 </head>
 
@@ -154,20 +157,15 @@
                 <!-- Dropdown -->
                 <ul id="navLinkappsNavDropdown" class="hs-sub-menu dropdown-menu dropdown-menu-lg" aria-labelledby="appsNavDropdown" style="min-width: 16rem;">
                   <li>
-                    <a class="dropdown-item" href="#>
+                    <a class="dropdown-item" href="/create-event">
                       <span class="tio-circle nav-indicator-icon"></span> Create Event
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="../apps-invoice-generator.html">
+                    <a class="dropdown-item" href="/my-events">
                       <span class="tio-circle nav-indicator-icon"></span> My Events 
                     </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="../apps-file-manager.html">
-                      <span class="tio-circle nav-indicator-icon"></span> Archived Events
-                    </a>
-                  </li>
+                  </li>                  
                 </ul>
                 <!-- End Dropdown -->
               </li>
@@ -187,10 +185,7 @@
   <main id="content" role="main" class="main">
     <!-- Content -->
     <div class="content container">
-      <div class="row justify-content-lg-center pt-lg-5 pt-xl-5">
         @!section('body')       
-      </div>
-      <!-- End Row -->
     </div>
     <!-- End Content -->
   </main>
