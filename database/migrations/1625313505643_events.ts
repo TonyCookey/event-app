@@ -10,11 +10,12 @@ export default class Events extends BaseSchema {
       table.text('event_description', 'longtext')
       table.string('event_category')
       table.string('event_address')
-      table.date('event_start_date').notNullable()
-      table.date('event_end_date').notNullable()
+      table.dateTime('event_start_date').notNullable()
+      table.dateTime('event_end_date').notNullable()
       table.boolean('is_event_free').defaultTo(true)
       table.integer('user_id').unsigned()
       table.foreign('user_id').references('users.id')
+      table.boolean('is_deleted').defaultTo(false)
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */

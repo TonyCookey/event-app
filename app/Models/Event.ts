@@ -4,10 +4,13 @@ import User from 'App/Models/User'
 
 export default class Event extends BaseModel {
   @belongsTo(() => User)
-  public author: BelongsTo<typeof User>
+  public user: BelongsTo<typeof User>
   
   @column({ isPrimary: true })
   public id: number
+
+  @column()
+  public userId: number
 
   @column()
   public event_name: string
@@ -29,6 +32,9 @@ export default class Event extends BaseModel {
 
   @column()
   public is_event_free: boolean
+
+  @column()
+  public is_deleted: boolean
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
