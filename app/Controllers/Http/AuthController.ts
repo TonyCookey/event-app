@@ -1,24 +1,38 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import User from "App/Models/User";
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
+
 
 export default class AuthController {
   /**
    * Sign out an authenticated user
    *
    */
-  public async signin({ auth, response, request }: HttpContextContract) {
-    const email = request.input("email");
-    const password = request.input("password");
-    const rememberMe = request.input("rememberMe");
-
+  public async signin({ auth, response, request, session }: HttpContextContract) {
     try {
-      await auth.use("web").attempt(email, password, rememberMe);
-      // await auth.use('web').authenticate()
-      // console.log(auth.user)
+      const email = request.input("email");
+      const password = request.input("password");
+      const rememberMe = request.input("rememberMe");
 
-      response.redirect().toPath("dashboard");
-    } catch {
-      return response.badRequest("Invalid credentials");
+      const user = await User.findBy('email', email)
+      // console.log(user);
+      
+
+      if (user == null) {
+        session.flash('error', "User does not exist. Please create an account")
+        return response.redirect().back()
+        
+      }
+      await auth.use("web").attempt(email, password, rememberMe);
+        response.redirect().toPath("dashboard");
+
+
+
+
+    } catch (error) {
+      session.flash('error', "Invalid Credentials. Password Mismatch")
+      console.log(error);
+      return response.redirect().back()
     }
   }
   public async signout({ auth, response }: HttpContextContract) {
@@ -34,23 +48,27 @@ export default class AuthController {
    * Create a new user
    */
   public async signup({ request, auth, response }: HttpContextContract) {
-    try {
-      console.log(request.all());
+    
+
+      const eventSchema = schema.create({
+        first_name: schema.string({ trim: true }),
+        last_name: schema.string({ trim: true }),
+        email: schema.string({ trim: true },[
+          rules.unique({ table: 'users', column: 'email' })
+        ]),
+        password: schema.string(),
+      })
+      const payload = await request.validate({ schema: eventSchema })
 
       await User.create({
-        first_name: request.input("firstname"),
-        last_name: request.input("lastname"),
-        email: request.input("email"),
-        password: request.input("password"),
+        first_name: payload.first_name,
+        last_name: payload.last_name,
+        email: payload.email,
+        password: payload.password,
       });
       await auth
         .use("web")
         .attempt(request.input("email"), request.input("password"));
       response.redirect().toPath("dashboard");
-
-    } catch (err) {
-      console.error();
-      console.log(err);
-    }
   }
 }

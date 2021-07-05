@@ -4,6 +4,49 @@
 @section('body')
   
   <div class="row justify-content-lg-center pt-lg-5 pt-xl-5">
+    <div class="col-lg-4">
+        <div class="card mb-3 mb-lg-5">
+            <!-- Header -->
+            <div class="card-header">
+              <h4 class="card-header-title">Event Details</h4>
+            </div>
+            <!-- End Header -->
+
+            <div class="card-body">
+                <ul class="list-unstyled list-unstyled-py-3 text-dark mb-3">
+                  <li class="py-0">
+                    <small class="card-subtitle">About</small>
+                  </li>                 
+                  <li>
+                    <i class="tio-apps nav-icon"></i>
+                    {{event.event_name}}
+                  </li>
+                  <li>
+                    <i class="tio-menu-vs-outlined nav-icon"></i>
+                    {{event.event_category}}
+                  </li>
+                  <li>
+                    <i class="tio-dollar nav-icon"></i>
+                    {{event.is_event_free == 0 ? 'Free Event' : 'Paid Event'}}
+                  </li>
+
+                  <li class="pt-2 pb-0 mt-2">
+                    <small class="card-subtitle">Contact Person</small>
+                  </li>
+
+                  <li>
+                    <i class="tio-user nav-icon"></i>
+                    {{auth.user.first_name}} {{auth.user.last_name}}
+                  </li>
+                  <li>
+                    <i class="tio-online nav-icon"></i>
+                    {{auth.user.email}}
+                  </li>
+                 
+                </ul>
+              </div>
+          </div>
+    </div>
     <div class="col-lg-7">
         <div class="card mb-3 mb-lg-5">
             <!-- Header -->
@@ -17,17 +60,26 @@
               <div class="row">
                 <div class="col-md mb-3 mb-md-0">
                   <div class="mb-4">
-                    <span class="card-subtitle mb-0">{{event.event_name}}</span>
-                    <h3>Starter - April 2020</h3>
+                    <span class="card-subtitle mb-1">{{event.event_name}}</span>
+                    <h3>{{event_start_date}} - {{event_end_date}}</h3>
                   </div>
 
-                  <span class="card-subtitle mb-0">Total per year</span>
-                  <h2 class="h1 text-primary">$</h2>
+                  @if(event.event_address)
+                  <span class="card-subtitle mt-3 mb-1">Event Location/Address </span>
+                  <p class="">{{event.event_address}}</p>
+                  @endif
+
+                  @if(event.event_description)
+                  <span class="card-subtitle mt-3 mb-1">About Event</span>
+                  <p class="">{{event.event_description}}</p>
+                  @endif                  
                 </div>
 
                 <ul class="list-inline list-unstyled col-md-auto">
                   <li class="list-inline-item mb-2 mr-2">
-                    <a class="btn btn-danger" href="">Delete Event</a>
+                      <form action="/event/{{event.id}}?_method=DELETE" method="POST">
+                          <button class="btn btn-danger" href="">Delete Event</button>
+                      </form>
                   </li>
                   <li class="list-inline-item mb-2">
                     <div>
@@ -37,23 +89,6 @@
                 </ul>
               </div>
               <!-- End Row -->
-            </div>
-            <!-- End Body -->
-
-            <hr class="my-4">
-
-            <!-- Body -->
-            <div class="card-body">
-              <div class="row align-items-center flex-grow-1 mb-2">
-                <div class="col">
-                  <h4 class="card-header-title">Event Description</h4>
-                </div>                
-              </div>
-              <p>{{event.event_description}}</p>
-
-             
-
-             
             </div>
             <!-- End Body -->
           </div>

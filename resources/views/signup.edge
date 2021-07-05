@@ -74,15 +74,24 @@
                       <h1 class="display-4">Create your account</h1>
                       <p>Already have an account? <a href="/">Sign in here</a></p>
                     </div>
-
-                    {{--  <a class="btn btn-lg btn-block btn-white mb-4" href="#">
-                      <span class="d-flex justify-content-center align-items-center">
-                        <img class="avatar avatar-xss mr-2" src="assets/svg/brands/google.svg" alt="Image Description">
-                        Sign up with Google
-                      </span>
-                    </a>
-
-                    <span class="divider text-muted mb-4">OR</span>  --}}
+                    @if(flashMessages.has('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      {{ flashMessages.get('success') }}
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="tio-clear tio-lg"></i>
+                      </button>
+                    </div>
+                    @endif
+                    @if(flashMessages.has('errors.email'))  
+                    <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                      Email Address already exists
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="tio-clear tio-lg"></i>
+                      </button>
+                    </div>
+                  @endif
+                     
+                   
                   </div>
 
                   <label class="input-label" for="fullNameSrEmail">Full name</label>
@@ -91,13 +100,13 @@
                   <div class="form-row">
                     <div class="col-sm-6">
                       <div class="js-form-message form-group">
-                        <input type="text" class="form-control form-control-lg" name="firstname" id="fullNameSrEmail" placeholder="Iroegbu" aria-label="Iroegbu" required data-msg="Please enter your first name.">
+                        <input type="text" class="form-control form-control-lg" name="first_name" id="fullNameSrEmail" placeholder="Iroegbu" aria-label="Iroegbu" required data-msg="Please enter your first name.">
                       </div>
                     </div>
 
                     <div class="col-sm-6">
                       <div class="js-form-message form-group">
-                        <input type="text" class="form-control form-control-lg" name="lastname" placeholder="Anthony" aria-label="Anthony" required data-msg="Please enter your last name.">
+                        <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Anthony" aria-label="Anthony" required data-msg="Please enter your last name.">
                       </div>
                     </div>
                   </div>

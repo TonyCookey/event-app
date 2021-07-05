@@ -1,0 +1,107 @@
+@layout('layout')
+@set('title', 'Active Events')
+
+@section('body')
+@if(event_length == 0)
+  <div class="row justify-content-lg-center pt-lg-5 pt-xl-5">
+    <div class="col-lg-9">
+      <div class="text-center">
+        <img class="img-fluid  mb-5" src="assets/svg/illustrations/graphs.svg" alt="Image Description" style="max-width: 30rem;">
+
+        @if(auth.isLoggedIn)
+          <h1>Hello, {{ auth.user.first_name }}  {{ auth.user.last_name }}</h1>  
+          <p>You currently do not have any active events.</p>
+          <a class="btn btn-primary" href="/create-event">Create your first event </a>
+        @endif
+      </div>
+    </div>
+  </div>
+@else
+  <div class="page-header">
+    <div class="row align-items-center">
+      <div class="col-sm mb-2 mb-sm-0">
+        <h1 class="page-header-title">Active Events</h1>
+      </div>
+
+      <div class="col-sm-auto">
+        <a class="btn btn-primary" href="/create-event">
+          <i class="tio-apps mr-1"></i> Create Event
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3">
+      @each(event in events)
+      <div class="col mb-3 mb-lg-5">
+        <!-- Card -->
+        <div class="card h-100">
+        <!-- Body -->
+        <div class="card-body pb-0">
+            <div class="row align-items-center mb-2">
+            <div class="col-9">
+                <h4 class="mb-1">
+                <a href="/event/{{event.id}}" class="text-primary-2">{{event.event_name}}</a>
+                </h4>
+            </div>
+
+            <div class="col-3 text-right">
+                <!-- Unfold -->
+                <div class="hs-unfold">
+                <a class="js-hs-unfold-invoker btn btn-icon btn-sm btn-ghost-secondary rounded-circle" href="javascript:;" data-hs-unfold-options="{
+                    &quot;target&quot;: &quot;#teamsDropdown{{event.id}}&quot;,
+                    &quot;type&quot;: &quot;css-animation&quot;
+                    }" data-hs-unfold-target="#teamsDropdown{{event.id}}" data-hs-unfold-invoker="">
+                    <i class="tio-more-vertical"></i>
+                </a>
+
+                <div id="teamsDropdown{{event.id}}" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-sm dropdown-menu-right hs-unfold-hidden hs-unfold-content-initialized hs-unfold-css-animation animated" data-hs-target-height="145" data-hs-unfold-content="" data-hs-unfold-content-animation-in="slideInUp" data-hs-unfold-content-animation-out="fadeOut" style="animation-duration: 300ms;">
+                    <a class="dropdown-item" href="/event/{{event.id}}">View Event</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/edit-event/{{event.id}}">Edit Event</a>
+                </div>
+                </div>
+                <!-- End Unfold -->
+            </div>
+            </div>
+            <!-- End Row -->
+
+            <p>{{event.event_description}}</p>
+        </div>
+        <!-- End Body -->
+
+        <!-- Footer -->
+        <div class="card-footer border-0 pt-0">
+            <div class="list-group list-group-flush list-group-no-gutters">
+            <!-- List Item -->
+            <div class="list-group-item">
+                <div class="row align-items-center">
+                <div class="col">
+                    <small class="card-subtitle">{{event.event_category}}</small>
+                </div>
+
+                <div class="col-auto">
+                    @if(event.is_event_free == 1)
+                    <p class="badge badge-soft-primary p-2" >Free Event</p>
+                    
+                    @else
+                    
+                    <p class="badge badge-soft-primary p-2" ><i class="tio-dollar"></i> Paid Event</p>
+                    @endif
+                </div>
+                </div>
+            </div>
+            <!-- End List Item -->             
+            </div>
+        </div>
+        <!-- End Footer -->
+        </div>
+        <!-- End Card -->
+    </div>
+      @endeach
+       
+  </div>
+  
+@endif
+ 
+@end

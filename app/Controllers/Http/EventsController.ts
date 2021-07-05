@@ -1,6 +1,7 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import User from "App/Models/User";
 import { schema } from '@ioc:Adonis/Core/Validator'
+import sessionConfig from "Config/session";
 
 export default class EventsController {
   public async index({ view }: HttpContextContract) {
@@ -40,7 +41,7 @@ export default class EventsController {
     const user = await User.findOrFail(auth?.user?.id);
 
     const events = await user.related('events').query().where('is_deleted', false)
-    console.log(events);
+    // console.log(events);
 
     return view.render('events', {
       events,
@@ -48,13 +49,26 @@ export default class EventsController {
     })
   }
 
-  public async show({params, view, auth}: HttpContextContract) {
+  public async show({params, view, auth, response,session}: HttpContextContract) {
     const user = await User.findOrFail(auth?.user?.id);
 
-    const event = await user.related('events').query().where('id', params.id).first()
+    const event = await user.related('events').query().where('id', params.id).where('is_deleted', false).first()
+    // console.log(event);
+    
+
+    if (event == null) {
+      session.flash('error','Event does not exist')
+      return response.redirect().toRoute('/events')
+
+    }
+
+    const event_start_date = new Date(String(event?.event_start_date)).toDateString()
+    const event_end_date = new Date(String(event?.event_end_date)).toDateString()
 
     return view.render('single_event', {
-      event
+      event,
+      event_start_date,
+      event_end_date,
     })
 
     }
@@ -62,7 +76,7 @@ export default class EventsController {
   public async edit({params, auth, view}: HttpContextContract) {
     const user = await User.findOrFail(auth?.user?.id);
 
-    const event = await user.related('events').query().where('id', params.id).first()
+    const event = await user.related('events').query().where('is_deleted', false).where('id', params.id).first()
 
     // console.log(event);
     
@@ -77,7 +91,6 @@ export default class EventsController {
   }
 
   public async update({request, params, auth, response, view, session}: HttpContextContract) {
-    console.log(params);
     
 
   const user = await User.findOrFail(auth?.user?.id);
@@ -94,7 +107,7 @@ export default class EventsController {
       })
       const payload = await request.validate({ schema: eventSchema })
 
-      const event = await user.related("events").query().where('id', params.id).first()
+      const event = await user.related("events").query().where('is_deleted', false).where('id', params.id).first()
 
       if (event == null ) {
         return view.render('errors.not-found')
@@ -104,10 +117,39 @@ export default class EventsController {
       
       session.flash('success', 'Event Edited successfully')
 
-      return response.redirect('/events')
+      return response.redirect().toRoute('/events')
 
   }
 
-  public async destroy({}: HttpContextContract) {}
+  public async activeEvents({auth,view}: HttpContextContract) {
+    const today = new Date()
+    const user = await User.findOrFail(auth?.user?.id);
+
+    const events = await user.related('events').query().where('is_deleted', false).andWhere('event_start_date','<=', today).andWhere('event_end_date','>=', today)
+    // console.log(events.length);
+
+    return view.render('active-events', {
+      events,
+      event_length: events.length
+    })
+  }
+  public async destroy({params,auth,view,session,response}: HttpContextContract) {
+    const user = await User.findOrFail(auth?.user?.id);
+
+    const event = await user.related('events').query().where('id', params.id).first()    
+
+    if (event == null ) {
+      return view.render('errors.not-found')
+    }
+    event.is_deleted = true
+
+    await event.save()
+
+    session.flash('success',`${event.event_name} Event Successfully Deleted`)
+    return response.redirect().toRoute('/events')
+
+    
+    
+  }
 
 }

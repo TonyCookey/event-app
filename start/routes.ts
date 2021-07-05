@@ -72,8 +72,13 @@ Route.get('events', async ( ctx ) => {
   return new EventsController().events(ctx)
 }).middleware('auth')
 
+Route.get('active-events', async ( ctx ) => {
+  return new EventsController().activeEvents(ctx)
+}).middleware('auth')
+
+Route.delete('event/:id', async ( ctx ) => {
+  return new EventsController().destroy(ctx)
+}).middleware('auth')
 
 
-// Route.post('signin', 'AuthController.signin')
-// Route.post('signup', 'AuthController.signup')
 

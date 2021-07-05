@@ -17,7 +17,7 @@
   
           <div class="form-group">
             <label class="input-label" for="event_description">Event Description  <span class="required">*</span></label>
-            <textarea id="event_description" name="event_description" class="form-control" placeholder="Event Description" rows="2"  required>{{event.event_description}}</textarea>
+            <textarea id="event_description" name="event_description" class="form-control" placeholder="Event Description" rows="2"  required>{{event.event_description }}</textarea>
             @if(flashMessages.has('errors.event_description'))
               <span class="invalid-feedback d-block">{{ flashMessages.get('errors.event_description') }}</span>
             @endif  
@@ -25,7 +25,7 @@
   
           <div class="form-group">
             <label class="input-label" for="event_address">Event Location/Address  <span class="required">*</span></label>
-            <input type="text" id="event_address" class="form-control" placeholder="Event Location/Address" name="event_address" value="{{event.event_address}}" required>
+            <input type="text" id="event_address" class="form-control" placeholder="Event Location/Address" name="event_address" value="{{event.event_address ? event.event_address : ''}}" required>
             @if(flashMessages.has('errors.event_address'))
             <span class="invalid-feedback d-block">{{ flashMessages.get('errors.event_address') }}</span>
             @endif        
