@@ -58,7 +58,25 @@
     }
     .card[href]:hover .card-header-title, .card[href]:hover .card-title {
     color: #d84514;
-}
+    }
+    .text-primary-2{
+      color: #fc6431;
+    }
+    .text-primary-2:hover{
+      color: #d84514;
+    }
+    .badge-soft-primary {
+    color: #fc6431;
+    background-color: #fc643121;
+    }
+    .btn-ghost-secondary.active, .btn-ghost-secondary.focus, .btn-ghost-secondary:active, .btn-ghost-secondary:focus, .btn-ghost-secondary:hover {
+    color: #02080e;
+    background-color: rgb(252 100 49 / 18%);
+    }
+    .card-subtitle {
+    color: rgb(3, 133, 149);
+    
+    }
   </style>
 </head>
 
@@ -162,7 +180,7 @@
                     </a>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="/my-events">
+                    <a class="dropdown-item" href="/events">
                       <span class="tio-circle nav-indicator-icon"></span> My Events 
                     </a>
                   </li>                  
@@ -185,6 +203,25 @@
   <main id="content" role="main" class="main">
     <!-- Content -->
     <div class="content container">
+      @if(flashMessages.has('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ flashMessages.get('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <i class="tio-clear tio-lg"></i>
+        </button>
+      </div>
+      @endif
+      @if(flashMessages.has('errors'))
+        @each(error in flashMessages.get('errors'))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{ error }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="tio-clear tio-lg"></i>
+          </button>
+        </div>
+        @endeach      
+      @endif
+      
         @!section('body')       
     </div>
     <!-- End Content -->

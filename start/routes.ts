@@ -55,6 +55,19 @@ Route.post('create-event', async ( ctx ) => {
   return new EventsController().create(ctx)
 }).middleware('auth')
 
+Route.get('event/:id', async ( ctx ) => {
+  return new EventsController().show(ctx)
+}).middleware('auth')
+
+
+Route.get('edit-event/:id', async ( ctx ) => {
+  return new EventsController().edit(ctx)
+}).middleware('auth')
+
+Route.put('edit-event/:id', async ( ctx ) => {
+  return new EventsController().update(ctx)
+}).middleware('auth')
+
 Route.get('events', async ( ctx ) => {
   return new EventsController().events(ctx)
 }).middleware('auth')

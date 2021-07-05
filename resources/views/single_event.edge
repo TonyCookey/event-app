@@ -1,0 +1,62 @@
+@layout('layout')
+@set('title', 'Single Event')
+
+@section('body')
+  
+  <div class="row justify-content-lg-center pt-lg-5 pt-xl-5">
+    <div class="col-lg-7">
+        <div class="card mb-3 mb-lg-5">
+            <!-- Header -->
+            <div class="card-header">
+              <h4 class="card-header-title">Event Overview</h4>
+            </div>
+            <!-- End Header -->
+
+            <!-- Body -->
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md mb-3 mb-md-0">
+                  <div class="mb-4">
+                    <span class="card-subtitle mb-0">{{event.event_name}}</span>
+                    <h3>Starter - April 2020</h3>
+                  </div>
+
+                  <span class="card-subtitle mb-0">Total per year</span>
+                  <h2 class="h1 text-primary">$</h2>
+                </div>
+
+                <ul class="list-inline list-unstyled col-md-auto">
+                  <li class="list-inline-item mb-2 mr-2">
+                    <a class="btn btn-danger" href="">Delete Event</a>
+                  </li>
+                  <li class="list-inline-item mb-2">
+                    <div>
+                      <a class="btn btn-primary" href="/edit-event/{{event.id}}">Edit Event</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <!-- End Row -->
+            </div>
+            <!-- End Body -->
+
+            <hr class="my-4">
+
+            <!-- Body -->
+            <div class="card-body">
+              <div class="row align-items-center flex-grow-1 mb-2">
+                <div class="col">
+                  <h4 class="card-header-title">Event Description</h4>
+                </div>                
+              </div>
+              <p>{{event.event_description}}</p>
+
+             
+
+             
+            </div>
+            <!-- End Body -->
+          </div>
+    </div>
+  </div>
+@end
