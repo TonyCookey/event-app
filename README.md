@@ -56,4 +56,24 @@ AdonisJS is a Node.js framework and hence it requires Node.js to be installed on
 - Start Development Server
 
 		node ace serve --watch
+    
+
+## Setup Tests
+
+- Create Test Database
+
+- Create an ***env.testing*** file. Copy the values from **.env.testing.example** and paste into **.env.testing** and configure to match database name
+
+- Install Japa (test client)
+
+		npm i -D japa execa get-port
+
+- Install supertest and jsdom .
+
+		npm i -D supertest @types/supertest jsdom @types/jsdom
+
+- Run the following command to execute the tests.
+
+
+		node -r @adonisjs/assembler/build/register japaFile.ts
 
