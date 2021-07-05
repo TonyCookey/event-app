@@ -20,7 +20,7 @@ export default class Events extends BaseSchema {
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
        */
       table.timestamp('created_at').defaultTo(this.now())
-      table.timestamp('updated_at').defaultTo(this.now())
+      // table.timestamp('updated_at').defaultTo(this.now())
     })
   }
 
