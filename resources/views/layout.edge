@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from htmlstream.com/front-dashboard/layouts/header-default-container.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Nov 2020 05:35:13 GMT -->
+<head>
+  <!-- Required Meta Tags Always Come First -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  <title>{{ title }}</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="https://tix.africa/static/images/favicon.png">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&amp;display=swap" rel="stylesheet">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="../assets/css/vendor.min.css">
+  <link rel="stylesheet" href="../assets/vendor/icon-set/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+
+  <!-- CSS Front Template -->
+  <link rel="stylesheet" href="../assets/css/theme.minc619.css?v=1.0">
+  <style>
+      .navbar .nav-link:hover {
+    color: #fc6431;
+    }
+    span.required{
+        color:#fc6431
+    }
+    .custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #fc6431;
+    background-color: #fc6431;
+    }
+    .btn-primary {
+    color: #fff;
+    background-color: #fc6431;
+    border-color: #fc6431;
+    }
+    .btn-primary:hover {
+    color: #fff;
+    background-color: #d84514;
+    border-color: #d84514;
+    }
+    .btn-primary:focus {
+    color: #fff;
+    background-color: #d84514;
+    border-color: #d84514;
+    }
+    .btn-primary:active {
+    color: #fff;
+    background-color: #d84514;
+    border-color: #d84514;
+    }
+    .card[href]:hover .card-header-title, .card[href]:hover .card-title {
+    color: #d84514;
+    }
+    .text-primary-2{
+      color: #fc6431;
+    }
+    .text-primary-2:hover{
+      color: #d84514;
+    }
+    .badge-soft-primary {
+    color: #fc6431;
+    background-color: #fc643121;
+    }
+    .btn-ghost-secondary.active, .btn-ghost-secondary.focus, .btn-ghost-secondary:active, .btn-ghost-secondary:focus, .btn-ghost-secondary:hover {
+    color: #02080e;
+    background-color: rgb(252 100 49 / 18%);
+    }
+    .card-subtitle {
+    color: rgb(3, 133, 149);
+    
+    }
+  </style>
+</head>
+
+
+<body>
+  <!-- ========== HEADER ========== -->
+  <header id="header" class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-flush navbar-container navbar-bordered  ">
+    <div class="container">
+      <div class="js-mega-menu navbar-nav-wrap">
+        <div class="navbar-brand-wrapper">
+          <!-- Logo -->
+          
+          
+            <a class="navbar-brand" href="/dashboard" aria-label="Tix Africa">
+              <img class="navbar-brand-logo" src="https://static-00.iconduck.com/assets.00/tix-africa-icon-512x104-rn1leo1m.png" alt="Logo">
+            </a>
+          
+          <!-- End Logo -->
+        </div>
+
+        <!-- Secondary Content -->
+        <div class="navbar-nav-wrap-content-right">
+          <!-- Navbar -->
+          <ul class="navbar-nav align-items-center flex-row">
+            <li class="nav-item">
+              <!-- Account -->
+              <div class="hs-unfold">
+                <a class="js-hs-unfold-invoker navbar-dropdown-account-wrapper" href="javascript:;"
+                   data-hs-unfold-options='{
+                     "target": "#accountNavbarDropdown",
+                     "type": "css-animation"
+                   }'>
+                  <div class="avatar avatar-sm avatar-circle">
+                    <img class="avatar-img" src="../assets/img/160x160/img1.jpg" alt="{{auth.user.first_name}} {{auth.user.last_name}}">
+                    <span class="avatar-status avatar-sm-status avatar-status-success"></span>
+                  </div>
+                </a>
+
+                <div id="accountNavbarDropdown" class="hs-unfold-content dropdown-unfold dropdown-menu dropdown-menu-right navbar-dropdown-menu navbar-dropdown-account" style="width: 16rem;">
+                  <div class="dropdown-item">
+                    <div class="media align-items-center">
+                      <div class="avatar avatar-sm avatar-circle mr-2">
+                        <img class="avatar-img" src="../assets/img/160x160/img1.jpg" alt="{{auth.user.first_name}} {{auth.user.last_name}}">
+                      </div>
+                      <div class="media-body">
+                        <span class="card-title h5">{{auth.user.first_name}} {{auth.user.last_name}}</span>
+                        <span class="card-text">{{auth.user.email}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="dropdown-divider"></div>
+                  
+                    
+                  <a class="dropdown-item" href="/events">
+                    <span class="text-truncate pr-2" title="Events">My Events</span>
+                  </a>    
+                  <a class="dropdown-item" href="/signout">
+                    <span class="text-truncate pr-2" title="Sign out">Sign out</span>
+                  </a>
+                </div>
+              </div>
+              <!-- End Account -->
+            </li>
+
+            <li class="nav-item">
+              <!-- Toggle -->
+              <button type="button" class="navbar-toggler btn btn-ghost-secondary rounded-circle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarNavMenu" data-toggle="collapse" data-target="#navbarNavMenu">
+                <i class="tio-menu-hamburger"></i>
+              </button>
+              <!-- End Toggle -->
+            </li>
+          </ul>
+          <!-- End Navbar -->
+        </div>
+        <!-- End Secondary Content -->
+
+        <!-- Navbar -->
+        <div class="navbar-nav-wrap-content-left collapse navbar-collapse" id="navbarNavMenu">
+          <div class="navbar-body">
+            <ul class="navbar-nav flex-grow-1">
+             <!-- Dashboard -->
+             <li>
+                <a class="navbar-nav-link nav-link" href="/dashboard">
+                    <i class="tio-home-vs-1-outlined nav-icon"></i> Dashboard
+                </a>
+              </li>
+              <!-- End Dashboard -->      
+
+             
+              <!-- Events -->
+              <li class="hs-has-sub-menu">
+                <a id="appsNavDropdown" class="hs-mega-menu-invoker navbar-nav-link nav-link nav-link-toggle" href="javascript:;" aria-haspopup="true" aria-expanded="false" aria-labelledby="navLinkappsNavDropdown">
+                  <i class="tio-apps nav-icon"></i> Events
+                </a>
+
+                <!-- Dropdown -->
+                <ul id="navLinkappsNavDropdown" class="hs-sub-menu dropdown-menu dropdown-menu-lg" aria-labelledby="appsNavDropdown" style="min-width: 16rem;">
+                  <li>
+                    <a class="dropdown-item" href="/create-event">
+                      <span class="tio-circle nav-indicator-icon"></span> Create Event
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/active-events">
+                      <span class="tio-circle nav-indicator-icon"></span> Active Events
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="/events">
+                      <span class="tio-circle nav-indicator-icon"></span> My Events 
+                    </a>
+                  </li>                  
+                </ul>
+                <!-- End Dropdown -->
+              </li>
+              <!-- End Documentation -->
+
+            </ul>
+          </div>
+        </div>
+        <!-- End Navbar -->
+      </div>
+    </div>
+  </header>
+  <!-- ========== END HEADER ========== -->
+
+  
+  <!-- ========== MAIN CONTENT ========== -->
+  <main id="content" role="main" class="main">
+    <!-- Content -->
+    <div class="content container">
+      @if(flashMessages.has('success'))
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ flashMessages.get('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <i class="tio-clear tio-lg"></i>
+        </button>
+      </div>
+      @endif
+      @if(flashMessages.has('error'))
+        
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{ flashMessages.get('error') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <i class="tio-clear tio-lg"></i>
+          </button>
+        </div>
+            
+      @endif
+      
+        @!section('body')       
+    </div>
+    <!-- End Content -->
+  </main>
+  <!-- ========== END MAIN CONTENT ========== -->
+
+ 
+
+  <!-- JS Implementing Plugins -->
+  <script src="../assets/js/vendor.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+  <!-- JS Front -->
+  <script src="../assets/js/theme.min.js"></script>
+  {{--  <script src="../assets/js/hs.flatpickr.js"></script>  --}}
+
+  <!-- JS Plugins Init. -->
+  <script>
+    $(document).on('ready', function () {
+      // initialization of unfold
+      $('.js-hs-unfold-invoker').each(function () {
+        var unfold = new HSUnfold($(this)).init();
+      });
+
+      // initialization of form search
+      $('.js-form-search').each(function () {
+        new HSFormSearch($(this)).init()
+      });
+
+      // initialization of mega menu
+      var megaMenu = new HSMegaMenu($('.js-mega-menu'), {
+        desktop: {
+          position: 'left'
+        }
+      }).init();
+    });
+  </script>
+
+  <script>
+    $(document).on('ready', function () {
+      // initialization of flatpickr
+      $('.js-flatpickr').each(function () {
+        $.HSCore.components.HSFlatpickr.init($(this));
+      });
+    });
+  </script>
+
+  <!-- IE Support -->
+  <script>
+    if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) document.write('<script src="../assets/vendor/babel-polyfill/polyfill.min.js"><\/script>');
+  </script>
+</body>
+
+<!-- Mirrored from htmlstream.com/front-dashboard/layouts/header-default-container.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Nov 2020 05:35:13 GMT -->
+</html>

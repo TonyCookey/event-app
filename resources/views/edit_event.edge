@@ -1,0 +1,136 @@
+@layout('layout')
+@set('title', 'Edit Event')
+
+@section('body')
+  
+  <div class="row justify-content-lg-center pt-lg-5 pt-xl-5">
+    <div class="col-lg-7">
+      <h1 class="mb-3">Edit Event</h1>    
+        <form action="/edit-event/{{event.id}}?_method=PUT" method="POST">
+          <div class="form-group">
+            <label class="input-label" for="event_name">Event Name <span class="required">*</span></label>
+            <input type="text" id="event_name" class="form-control" placeholder="Bisola's Party" name="event_name" required value="{{event.event_name}}">
+            @if(flashMessages.has('errors.event_name'))
+            <span class="invalid-feedback d-block">{{ flashMessages.get('errors.event_name') }}</span>
+            @endif
+          </div> 
+  
+          <div class="form-group">
+            <label class="input-label" for="event_description">Event Description  <span class="required">*</span></label>
+            <textarea id="event_description" name="event_description" class="form-control" placeholder="Event Description" rows="2"  required>{{event.event_description }}</textarea>
+            @if(flashMessages.has('errors.event_description'))
+              <span class="invalid-feedback d-block">{{ flashMessages.get('errors.event_description') }}</span>
+            @endif  
+          </div>
+  
+          <div class="form-group">
+            <label class="input-label" for="event_address">Event Location/Address  <span class="required">*</span></label>
+            <input type="text" id="event_address" class="form-control" placeholder="Event Location/Address" name="event_address" value="{{event.event_address ? event.event_address : ''}}" required>
+            @if(flashMessages.has('errors.event_address'))
+            <span class="invalid-feedback d-block">{{ flashMessages.get('errors.event_address') }}</span>
+            @endif        
+          </div>  
+        
+          <div class="form-group">
+            <label class="input-label" for="event_category">Event Category <span class="required">*</span></label>
+            <select id="event_category" class="form-control" name="event_category" value="{{event.event_category}}" required>
+              <option disabled>Choose a category</option>
+              <option value="Arts & Culture">Arts & Culture</option>
+              <option value="Business">Business</option>
+              <option value="Education">Education</option>
+              <option value="Fashion">Fashion</option>
+              <option value="General">General</option>
+              <option value="Hangout">Hangout</option>
+              <option value="Media">Media</option>
+              <option value="Meetup">Meetup</option>
+              <option value="Religion">Religion</option>
+              <option value="Technology">Technology</option>
+            </select>
+            @if(flashMessages.has('errors.event_category'))
+            <span class="invalid-feedback d-block">{{ flashMessages.get('errors.event_category') }}</span>
+            @endif 
+          </div>
+  
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label class="input-label" for="event_start_date">Event Start Date  <span class="required">*</span></label>
+                <input type="text" class="js-flatpickr form-control flatpickr-custom" placeholder="Select date" value="{{event.event_start_date}}" required name="event_start_date"
+                data-hs-flatpickr-options='{
+                  "enableTime": "true",
+                  "altInput": "true",
+                  "altFormat": "F j, Y H:i K",
+                  "dateFormat": "Z"
+                }'> 
+                @if(flashMessages.has('errors.event_start_date'))
+                <span class="invalid-feedback d-block">{{ flashMessages.get('errors.event_start_date') }}</span>
+                @endif 
+              </div>
+              <div class="col-md-6">
+                <label class="input-label" for="event_end_date">Event End Date  <span class="required">*</span></label>
+                <input type="text" class="js-flatpickr form-control flatpickr-custom" required placeholder="Select date" value="{{event.event_end_date}}"  name="event_end_date"
+                  data-hs-flatpickr-options='{
+                    "enableTime": "true",
+                    "altInput": "true",
+                    "altFormat": "F j, Y H:i K",
+                    "dateFormat": "Z"
+                  }'> 
+                @if(flashMessages.has('errors.event_end_date'))
+                <span class="invalid-feedback d-block">{{ flashMessages.get('errors.event_end_date') }}</span>
+                @endif 
+              </div>
+            </div>
+          </div>  
+  
+          <div class="form-group">
+            <label class="input-label" for="event_end_date">Event Payment Status <span class="required">*</span></label>
+            <div class="form-row">
+              <div class="col-sm mb-2 mb-sm-0">
+                <!-- Custom Radio -->
+                <div class="form-control">
+                  <div class="custom-control custom-radio custom-radio-reverse">
+                    <input type="radio" class="custom-control-input" name="is_event_free" value="1" id="Free" {{event.is_event_free == 1 ? 'checked' : ''}}>
+                    <label class="custom-control-label media align-items-center" for="Free">
+                      <i class="tio-agenda-view-outlined text-muted mr-2"></i>
+                      <span class="media-body">
+                        Free Event
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <!-- End Custom Radio -->
+              </div>
+            
+              <div class="col-sm mb-2 mb-sm-0">
+                <!-- Custom Radio -->
+                <div class="form-control">
+                  <div class="custom-control custom-radio custom-radio-reverse">
+                    <input type="radio" class="custom-control-input" name="is_event_free" id="Paid" value="0" {{event.is_event_free == 0 ? 'checked' : ''}}>
+                    <label class="custom-control-label media align-items-center" for="Paid">
+                      <i class="tio-dollar text-muted mr-2"></i>
+                      <span class="media-body">
+                        Paid Event
+                      </span>
+                    </label>
+                  </div>
+                </div>
+                <!-- End Custom Radio -->
+              </div>
+              @if(flashMessages.has('errors.event_end_date'))
+                <span class="invalid-feedback d-block">{{ flashMessages.get('errors.event_end_date') }}</span>
+              @endif 
+            
+              
+            </div>
+            <!-- End Row -->
+          </div>
+  
+          <div class="form-group">
+            <button type="submit" class="btn btn-lg btn-block btn-primary mb-2">Update Event</button>
+          </div>
+        
+         
+        </form>      
+    </div>
+  </div>
+@end

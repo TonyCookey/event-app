@@ -19,7 +19,66 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route'
+import AuthController from 'App/Controllers/Http/AuthController'
+import DashboardController from 'App/Controllers/Http/DashboardController'
+import EventsController from 'App/Controllers/Http/EventsController'
+
 
 Route.get('/', async ({ view }) => {
-  return view.render('welcome')
+  return view.render('signin')
 })
+Route.get('signup', async ({ view }) => {
+  return view.render('signup')
+})
+
+Route.post('signin', async (ctx) => {
+  return new AuthController().signin(ctx)
+}).as('auth.signin')
+
+Route.get('signout', async (ctx) => {
+  return new AuthController().signout(ctx)
+}).as('auth.signout')
+
+Route.post('signup', async (ctx) => {
+  return new AuthController().signup(ctx)
+}).as('auth.signup')
+
+Route.get('dashboard', async (ctx) => {
+  return new DashboardController().dashboard(ctx)
+}).as('auth.dashboard').middleware('auth')
+
+Route.get('create-event', async ( ctx ) => {
+  return new EventsController().index(ctx)
+}).middleware('auth')
+
+Route.post('create-event', async ( ctx ) => {
+  return new EventsController().create(ctx)
+}).middleware('auth')
+
+Route.get('event/:id', async ( ctx ) => {
+  return new EventsController().show(ctx)
+}).middleware('auth')
+
+
+Route.get('edit-event/:id', async ( ctx ) => {
+  return new EventsController().edit(ctx)
+}).middleware('auth')
+
+Route.put('edit-event/:id', async ( ctx ) => {
+  return new EventsController().update(ctx)
+}).middleware('auth')
+
+Route.get('events', async ( ctx ) => {
+  return new EventsController().events(ctx)
+}).middleware('auth')
+
+Route.get('active-events', async ( ctx ) => {
+  return new EventsController().activeEvents(ctx)
+}).middleware('auth')
+
+Route.delete('event/:id', async ( ctx ) => {
+  return new EventsController().destroy(ctx)
+}).middleware('auth')
+
+
+
