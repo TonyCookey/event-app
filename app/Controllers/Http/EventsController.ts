@@ -1,7 +1,6 @@
 import { HttpContextContract } from "@ioc:Adonis/Core/HttpContext";
 import User from "App/Models/User";
 import { schema } from '@ioc:Adonis/Core/Validator'
-import sessionConfig from "Config/session";
 
 export default class EventsController {
   public async index({ view }: HttpContextContract) {
