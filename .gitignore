@@ -3,6 +3,6 @@ build
 coverage
 .vscode
 .DS_STORE
-.env
 .env.testing
 tmp
+config.bat

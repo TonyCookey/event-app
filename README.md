@@ -1,4 +1,4 @@
-# Tix Event MVP Application
+# Event MVP Application
 
 Using AdonisJS (a NodeJS MVC framework),I buillt a basic MVP of an events
 application, using only traditional CRUD methods.
